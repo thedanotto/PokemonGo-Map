@@ -102,7 +102,7 @@ function initMap() {
 
     map.setMapTypeId(localStorage['map_style']);
 
-    marker = new google.maps.Marker({
+    var marker = new google.maps.Marker({
         position: {
             lat: center_lat,
             lng: center_lng
@@ -144,7 +144,7 @@ var pad = function pad(number) {
 };
 
 function pokemonLabel(name, disappear_time, id, latitude, longitude) {
-    disappear_date = new Date(disappear_time);
+    var disappear_date = new Date(disappear_time);
 
     var contentstring = "\n        <div>\n            <b>" + name + "</b>\n            <span> - </span>\n            <small>\n                <a href='http://www.pokemon.com/us/pokedex/" + id + "' target='_blank' title='View in Pokedex'>#" + id + "</a>\n            </small>\n        </div>\n        <div>\n            Disappears at " + pad(disappear_date.getHours()) + ":" + pad(disappear_date.getMinutes()) + ":" + pad(disappear_date.getSeconds()) + "\n            <span class='label-countdown' disappears-at='" + disappear_time + "'>(00m00s)</span></div>\n        <div>\n            <a href='https://www.google.com/maps/dir/Current+Location/" + latitude + "," + longitude + "'\n                    target='_blank' title='View in Maps'>Get directions</a>\n        </div>";
     return contentstring;
