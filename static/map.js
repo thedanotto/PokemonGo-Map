@@ -194,10 +194,10 @@ function scannedLabel(last_modified) {
 };
 
 // Dicts
-map_pokemons = {}; // Pokemon
-map_gyms = {}; // Gyms
-map_pokestops = {}; // Pokestops
-map_scanned = {}; // Pokestops
+var map_pokemons = {}; // Pokemon
+var map_gyms = {}; // Gyms
+var map_pokestops = {}; // Pokestops
+var map_scanned = {}; // Pokestops
 var gym_types = ["Uncontested", "Mystic", "Valor", "Instinct"];
 var audio = new Audio('https://github.com/AHAAAAAAA/PokemonGo-Map/raw/develop/static/sounds/ding.mp3');
 
