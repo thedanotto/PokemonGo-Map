@@ -135,6 +135,15 @@ function initSidebar() {
         }
 
         var loc = places[0].geometry.location;
+        var marker = new google.maps.Marker({
+            position: {
+                lat: loc.lat(),
+                lng: loc.lng()
+            },
+            map: map,
+            animation: google.maps.Animation.DROP
+        });
+
         $.post("next_loc?lat=" + loc.lat() + "&lon=" + loc.lng(), {}).done(function (data) {
             $("#next-location").val("");
             map.setCenter(loc);
