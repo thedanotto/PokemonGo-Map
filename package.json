@@ -26,7 +26,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "babel-cli --presets es2015,stage-0 dev/map.js -o static/map.js"
+    "postinstall": "babel --presets es2015,stage-0 dev/map.js -o static/map.js"
   },
   "repository": {
     "type": "git",
