@@ -106,7 +106,7 @@ function initMap() {
 
     map.setMapTypeId(localStorage['map_style']);
 
-    marker = new google.maps.Marker({
+    var marker = new google.maps.Marker({
         position: {
             lat: center_lat,
             lng: center_lng
@@ -147,7 +147,7 @@ var pad = function (number) { return number <= 99 ? ("0" + number).slice(-2) : n
 
 
 function pokemonLabel(name, disappear_time, id, latitude, longitude) {
-    disappear_date = new Date(disappear_time)
+    var disappear_date = new Date(disappear_time)
 
     var contentstring = `
         <div>
@@ -250,10 +250,10 @@ function scannedLabel(last_modified) {
 };
 
 // Dicts
-map_pokemons = {} // Pokemon
-map_gyms = {} // Gyms
-map_pokestops = {} // Pokestops
-map_scanned = {} // Pokestops
+var map_pokemons = {} // Pokemon
+var map_gyms = {} // Gyms
+var map_pokestops = {} // Pokestops
+var map_scanned = {} // Pokestops
 var gym_types = ["Uncontested", "Mystic", "Valor", "Instinct"];
 var audio = new Audio('https://github.com/AHAAAAAAA/PokemonGo-Map/raw/develop/static/sounds/ding.mp3');
 
@@ -547,6 +547,7 @@ var updateLabelDiffTime = function() {
         var minutes = Math.floor((difference - (hours * 36e5)) / 6e4);
         var seconds = Math.floor((difference - (hours * 36e5) - (minutes * 6e4)) / 1e3);
 
+        var timestring
         if (disappearsAt < now) {
             timestring = "(expired)";
         } else {

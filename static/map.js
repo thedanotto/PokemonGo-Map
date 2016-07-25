@@ -488,8 +488,7 @@ var updateLabelDiffTime = function updateLabelDiffTime() {
         var minutes = Math.floor((difference - hours * 36e5) / 6e4);
         var seconds = Math.floor((difference - hours * 36e5 - minutes * 6e4) / 1e3);
 
-        var timestring
-
+        var timestring;
         if (disappearsAt < now) {
             timestring = "(expired)";
         } else {
