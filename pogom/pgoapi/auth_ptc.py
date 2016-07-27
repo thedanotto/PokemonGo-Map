@@ -66,6 +66,7 @@ class AuthPtc(Auth):
         }
         self.log.info("%s", data)
         r1 = self._session.post(self.PTC_LOGIN_URL, data=data, headers=head)
+        self.log.info("r1: %s", data)
         ticket = None
         try:
             ticket = re.sub('.*ticket=', '', r1.history[0].headers['Location'])
