@@ -65,11 +65,11 @@ class AuthPtc(Auth):
             'password': password[:15],
         }
         r1 = self._session.post(self.PTC_LOGIN_URL, data=data, headers=head)
-        self.log(data)
+        self.log.erro(data)
         ticket = None
         try:
             ticket = re.sub('.*ticket=', '', r1.history[0].headers['Location'])
-            self.log(ticket)
+            self.log.error(ticket)
         except Exception,e:
             try:
                 self.log.error('Could not retrieve token: %s', r1.json()['errors'][0])
