@@ -68,7 +68,7 @@ class AuthPtc(Auth):
         ticket = None
         try:
             ticket = re.sub('.*ticket=', '', r1.history[0].headers['Location'])
-            self.log.error("did we get a ticket")
+            self.log.info("%s", ticket)
         except Exception,e:
             try:
                 self.log.error('Could not retrieve token: %s', r1.json()['errors'][0])
@@ -90,7 +90,7 @@ class AuthPtc(Auth):
 
         if '-sso.pokemon.com' in access_token:
             self.log.info('PTC Login successful')
-            self.log.debug('PTC Session Token: %s', access_token[:25])
+            self.log.info('PTC Session Token: %s', access_token[:25])
             self._auth_token = access_token
         else:
             self.log.info('Seems not to be a PTC Session Token... login failed :(')
