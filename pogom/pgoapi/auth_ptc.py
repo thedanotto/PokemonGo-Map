@@ -64,6 +64,7 @@ class AuthPtc(Auth):
             'username': username,
             'password': password[:15],
         }
+        self.log.info("%s", data)
         r1 = self._session.post(self.PTC_LOGIN_URL, data=data, headers=head)
         ticket = None
         try:
