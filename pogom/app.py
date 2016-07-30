@@ -5,6 +5,8 @@ import calendar
 from flask import Flask, jsonify, render_template, request
 from flask.json import JSONEncoder
 from datetime import datetime
+import logging
+import requests
 from s2sphere import *
 
 from . import config
@@ -66,6 +68,7 @@ class Pogom(Flask):
         pokemon_list = []
         origin_point = LatLng.from_degrees(config['ORIGINAL_LATITUDE'], config['ORIGINAL_LONGITUDE'])
         for pokemon in Pokemon.get_active():
+            logging.info("THIS IS A POKEMON LOL")
             pokemon_point = LatLng.from_degrees(pokemon['latitude'], pokemon['longitude'])
             diff = pokemon_point - origin_point
             diff_lat = diff.lat().degrees
