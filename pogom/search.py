@@ -11,7 +11,7 @@ from pgoapi import PGoApi
 from pgoapi.utilities import f2i, get_cellid
 
 from . import config
-from .models import parse_map
+from .models import Pokemon, parse_map
 
 log = logging.getLogger(__name__)
 
@@ -182,11 +182,14 @@ def search_loop(args):
     try:
         while True:
             log.info("Map iteration: {}".format(i))
+            
             search(args, i)
             log.info("Scanning complete.")
-            if args.scan_delay > 1:
-                log.info('Waiting {:d} seconds before beginning new scan.'.format(args.scan_delay))
-                time.sleep(args.scan_delay)
+            log.info("about to get POKEMON!!")
+            Pokemon.report_active()
+            if 30 > 1:
+                log.info('Waiting 30 seconds before beginning new scan.')
+                time.sleep(30)
             i += 1
 
     # This seems appropriate
