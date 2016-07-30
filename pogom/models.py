@@ -2,11 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import requests
 from peewee import Model, SqliteDatabase, InsertQuery, IntegerField,\
                    CharField, FloatField, BooleanField, DateTimeField
 from datetime import datetime
 from datetime import timedelta
 from base64 import b64encode
+
+
 
 from .utils import get_pokemon_name, get_args
 from .transform import transform_from_wgs_to_gcj
@@ -55,6 +58,16 @@ class Pokemon(BaseModel):
                 p['latitude'], p['longitude'] = \
                     transform_from_wgs_to_gcj(p['latitude'], p['longitude'])
             pokemons.append(p)
+
+
+            disappears_in_unformatted = p['disappear_time'] - datetime.utcnow()
+            disappears_in = str(timedelta(seconds=disappears_in_unformatted.seconds)) # removes the .2314324 from the end
+            pokemon_alert_text = "%s nearby! It disappears in %s Apple Maps: <http://maps.apple.com/?saddr=36.142919,-86.767305&daddr=%s,%s> Google Maps: <https://www.google.com/maps/dir/36.142919,-86.767305/%s,%s>" % (p['pokemon_name'], disappears_in, p['latitude'], p['longitude'], p['latitude'], p['longitude'])
+            log.info(pokemon_alert_text)
+            # r = requests.post("https://hooks.slack.com/services/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", headers={"ContType": "application/json"}, json={"channel": "#pokemon", "username": "pokescout", "text": pokemon_alert_text, "icon_emoji": ":ghost:"})
+
+
+
 
         return pokemons
 
